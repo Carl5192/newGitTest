@@ -1,0 +1,1313 @@
+openapi: 3.0.0
+info:
+  version: 5.0.0
+  title: Line Performance Visibility API
+servers:
+  - url: 'http://lineperformance.cs.gcg.net/rest/v5'
+tags:
+  - name: "hierarchy"
+    description: "Info on hierarchy"
+    externalDocs:
+      description: "Find out more"
+      url: "http://swagger.io"
+  - name: "productRunStatus"
+    description: "Info on productRunStatus"
+    externalDocs:
+      description: "Find out more"
+      url: "http://swagger.io"
+  - name: "skuShiftMetrics"
+    description: "Info on skuShiftMetrics"
+    externalDocs:
+      description: "Find out more"
+      url: "http://swagger.io"
+  - name: "shiftDownTime"
+    description: "Info on skuShiftMetrics"
+    externalDocs:
+      description: "Find out more"
+      url: "http://swagger.io"
+  - name: "linedetail"
+    description: "Info on linedetail"
+    externalDocs:
+      description: "Find out more"
+      url: "http://swagger.io"
+  - name: "summary"
+    description: "Info on summary"
+    externalDocs:
+      description: "Find out more"
+      url: "http://swagger.io"
+  - name: "note"
+    description: "Info on note"
+    externalDocs:
+      description: "Find out more"
+      url: "http://swagger.io"
+paths:
+  /division/hierarchy:
+    get:
+      tags:
+      - "hierarchy"
+      summary: List the hierachy within the specified division.
+      operationId: getDivisionHierarchy
+      parameters:
+        - name: division
+          in: query
+          description: Code of the division
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The hierarchy of the division.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Division'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /line/productRunStatus:
+    get:
+      tags:
+      - "productRunStatus"
+      summary: Line product run status service
+      operationId: test
+      parameters:
+        - name: division
+          in: query
+          description: Code of the division
+          required: true
+          schema:
+            type: string
+        - name: site
+          in: query
+          description: Code of the site
+          required: true
+          schema:
+            type: string
+        - name: hall
+          in: query
+          description: Code of the site
+          required: true
+          schema:
+            type: string
+        - name: line
+          in: query
+          description: Code of the product line status
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: status codes for line service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductRunStatus'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /line/skuShiftMetrics:
+    get:
+      tags:
+      - "skuShiftMetrics"
+      summary: Line product run status service
+      operationId: test
+      parameters:
+        - name: division
+          in: query
+          description: Code of the division
+          required: true
+          schema:
+            type: string
+        - name: site
+          in: query
+          description: Code of the site
+          required: true
+          schema:
+            type: string
+        - name: hall
+          in: query
+          description: Code of the site
+          required: true
+          schema:
+            type: string
+        - name: line
+          in: query
+          description: Code of the product line status
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: status codes for line service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/skuShiftMetrics'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /line/shiftDownTime:
+    get:
+      tags:
+      - "shiftDownTime"
+      summary: Line product run status service
+      operationId: test
+      parameters:
+        - name: division
+          in: query
+          description: Code of the division
+          required: true
+          schema:
+            type: string
+        - name: site
+          in: query
+          description: Code of the site
+          required: true
+          schema:
+            type: string
+        - name: hall
+          in: query
+          description: Code of the site
+          required: true
+          schema:
+            type: string
+        - name: line
+          in: query
+          description: Code of the product line status
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: status codes for line service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/shiftDownTime'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /shift/linedetail:
+    get:
+      tags:
+      - "linedetail"
+      summary: Shift Line Detail Service
+      operationId: test
+      parameters:
+        - name: division
+          in: query
+          description: Code of the division
+          required: true
+          schema:
+            type: string
+        - name: site
+          in: query
+          description: Code of the site
+          required: true
+          schema:
+            type: string
+        - name: hall
+          in: query
+          description: Code of the site
+          required: true
+          schema:
+            type: string
+        - name: line
+          in: query
+          description: Code of the line
+          required: true
+          schema:
+            type: string
+        - name: shift
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: day
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: status codes for line service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/linedetail'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /shift/summary:
+    post:
+      tags:
+      - "summary"
+      summary: "adds a summary of Metrics for the given shift over a collection of lines"
+      operationId: "test"
+      parameters:
+        - name: division
+          in: query
+          description: Code of the division
+          required: true
+          schema:
+            type: string
+        - name: site
+          in: query
+          description: Code of the site
+          required: true
+          schema:
+            type: string
+        - name: lines
+          in: query
+          description: Code of the line
+          required: true
+          schema:
+            type: string
+        - name: shift
+          in: query
+          description: Code of the shift
+          required: true
+          schema:
+            type: string
+        - name: day
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: status codes for line service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/summary'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /sku/note:
+    post:
+      tags:
+      - "note"
+      summary: Shift Line Detail Service
+      operationId: test
+      parameters:
+        - name: runId
+          in: query
+          description: Code of the runId
+          required: true
+          schema:
+            type: integer
+        - name: userId
+          in: query
+          description: Code of the userId
+          required: true
+          schema:
+            type: string
+        - name: note
+          in: query
+          description: Code of the note
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: status codes for line service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/note'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Division:
+      required:
+        - division
+        - sites
+      properties:
+        division:
+          type: string
+          example: Food to Go
+        sites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Site'
+    Site:
+      required:
+        - code
+        - name
+        - halls
+      properties:
+        code:
+          type: string
+          example: MW
+        name:
+          type: string
+          example: Manton Wood
+        halls:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hall'
+    Hall:
+      required:
+        - id
+        - name
+        - lines
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+        name:
+          type: string
+          example: Gluten Free Hall
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Line'
+    Line:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+        name:
+          type: string
+          example: Line 1
+    ProductRunStatus:
+      required:
+        - division
+        - site
+        - hall
+        - line
+        - changeOverDuration
+        - changeOverstatus
+        - changeOverTargetTime
+        - currentDownTimeDuration
+        - currentDownTimeReason
+        - downTimeReasonProvided
+        - productName
+        - plannedLineSpeed
+        - runningSpeed
+        - runningSpeedStatus
+        - achievedSpeed
+        - achievedSpeedStatus
+        - targetPacks
+        - remainingPacks
+        - rejectedPacks
+        - skuRunTime
+        - remainingTime
+        - downTime
+        - speeding
+      properties:
+        division:
+          type: string
+          example: Food to go
+        site:
+          type: string
+          example: MW
+        hall:
+          type: string
+          example: Hall 1
+        line:
+          type: string
+          example: Line 16
+        changeOverDuration:
+          type: integer
+          format: int32
+          example: 5
+        changeOverStatus: # yes or no boolean?
+          type: integer
+          format: int32
+          example: 1
+        currentDownTimeDurartion:
+          type: integer
+          format: int32
+          example: 5
+        currentDownTimeReason:
+          type: string
+          example: Line 16
+        downTimeReasonProvided:
+          type: string
+          example: Line 16
+        productName:
+          type: string
+          example: Coop Turkey and Trimmings Wedge
+        plannedLineSpeed:
+          type: integer
+          format: int32
+          example: 0
+        runningSpeed:
+          type: integer
+          format: int32
+          example: 0
+        runningSpeedStatus: # yes or no boolean?
+          type: integer
+          format: int32
+          example: 0
+        achievedSpeed:
+          type: integer
+          format: int32
+          example: 0
+        achievedSpeedStatus: # yes or no boolean?
+          type: integer
+          format: int32
+          example: 0
+        targetPacks:
+          type: integer
+          format: int32
+          example: 0
+        remainingPacks:
+          type: integer
+          format: int32
+          example: 0
+        rejectedPacks:
+          type: integer
+          format: int32
+          example: 0
+        skuRunTime:
+          type: integer
+          format: int32
+          example: 0
+        remainingTime:
+          type: integer
+          format: int32
+          example: 0
+        downTime:
+          type: integer
+          format: int32
+          example: 0
+        speeding:
+          type: integer
+          format: int32
+          example: 0
+      $ref: '#/components/schemas/ProductRunStatus'
+    skuShiftMetrics:
+      required:
+        - division
+        - site
+        - hall
+        - line
+        - changeOverDuration
+        - changeOverStatus
+        - changeOverTargetTime
+        - currentDownTimeDuration
+        - currentDownTimeReason
+        - downTimeReasonProvided
+        - productName
+        - skuRunTime
+        - shiftRunTime
+        - skuDownTime
+        - shiftDownTime
+        - skuCoAndBreaks
+        - shiftCoAndBreaks
+      properties:
+        division:
+         type: string
+         example: Food to go
+        site:
+          type: string
+          example: MW
+        hall:
+          type: string
+          example: Hall 1
+        line:
+          type: string
+          example: Line 16
+        changeOverDuration:
+          type: integer
+          format: int32
+          example: 5
+        changeOverStatus: # yes or no boolean?
+          type: integer
+          format: int32
+          example: 1
+        currentDownTimeDurartion:
+          type: integer
+          format: int32
+          example: 5
+        currentDownTimeReason:
+          type: string
+          example: Line 16
+        downTimeReasonProvided:
+          type: string
+          example: Line 16
+        productName:
+          type: string
+          example: Coop Turkey and Trimmings Wedge
+        skuRunTime:
+          type: integer
+          format: int32
+          example: 7654
+        shiftRunTime:
+          type: integer
+          format: int32
+          example: 16754
+        skuDownTime:
+          type: integer
+          format: int32
+          example: 956
+        shiftDownTime:
+          type: integer
+          format: int32
+          example: 2065
+        skuCoAndBreaks:
+          type: integer
+          format: int32
+          example: 786
+        shiftCoAndBreaks:
+          type: integer
+          format: int32
+          example: 786
+      $ref: '#/components/schemas/skuShiftMetrics'
+    shiftDownTime:
+      required:
+        - division
+        - site
+        - hall
+        - line
+        - changeOverDuration
+        - changeOverStatus
+        - changeOverTargetTime
+        - currentDownTimeDuration
+        - currentDownTimeReason
+        - downTimeReasonProvided
+        - productName
+        - shiftDowntimeTotalDuration
+        - shiftDowntime1Reason
+        - shiftDowntime1Duration
+        - shiftDowntime2Reason
+        - shiftDowntime2Duration
+        - shiftDowntime3Reason
+        - shiftDowntime3Duration
+      properties:
+        division:
+         type: string
+         example: Food to go
+        site:
+          type: string
+          example: MW
+        hall:
+          type: string
+          example: Hall1
+        line:
+          type: string
+          example: Line16
+        changeOverDuration:
+          type: integer
+          format: int32
+          example: 5
+        changeOverStatus: # yes or no boolean?
+          type: integer
+          format: int32
+          example: 1
+        currentDownTimeDurartion:
+          type: integer
+          format: int32
+          example: 5
+        currentDownTimeReason:
+          type: string
+          example: Line16
+        downTimeReasonProvided:
+          type: string
+          example: Line16
+        productName:
+          type: string
+          example: Coop Turkey and Trimmings Wedge
+        shiftDowntimeTotalDuration:
+          type: integer
+          format: int32
+          example: 591
+        shiftDowntime1Reason:
+          type: string
+          example: Cutter Set Up
+        shiftDowntime1Duration:
+          type: integer
+          format: int32
+          example: 244
+        shiftDowntime2Reason:
+          type: string
+          example: Waiting for ops
+        shiftDowntime2Duration:
+          type: integer
+          format: int32
+          example: 63
+        shiftDowntime3Reason:
+          type: string
+          example: LCM Set Up
+        shiftDowntime3Duration:
+          type: integer
+          format: int32
+          example: 73
+      $ref: '#/components/schemas/shiftDownTime'
+    linedetail:
+      required:
+        - division
+        - site
+        - halls
+        - line
+        - day
+        - shift
+        - downtime1Reason
+        - downtime1Minutes
+        - downtime1LabourHours
+        - downtime1Cost
+        - downtime2Reason
+        - downtime2Minutes
+        - downtime2abourHours
+        - downtime2Cost
+        - downtime3Reason
+        - downtime3Minutes
+        - downtime3abourHours
+        - downtime3Cost
+        - labourUtilSku1
+        - labourUtilSku1Minutes
+        - labourUtilSku1LabourHours
+        - labourUtilSku1Cost
+        - labourUtilSku2
+        - labourUtilSku2Minutes
+        - labourUtilSku2LabourHours
+        - labourUtilSku2Cost
+        - labourUtilSku3
+        - labourUtilSku3Minutes
+        - labourUtilSku3LabourHours
+        - labourUtilSku3Cost
+        - performanceSku1
+        - performanceSku1Minutes
+        - performanceSku1LabourHours
+        - performanceSku1Cost
+        - performanceSku2
+        - performanceSku2Minutes
+        - performanceSku2LabourHours
+        - performanceSku2Cost
+        - performanceSku3
+        - performanceSku3Minutes
+        - performanceSku3LabourHours
+        - performanceSku3Cost
+        - qualitySku1
+        - qualitySku1Minutes
+        - qualitySku1LabourHours
+        - qualitySku1Cost
+        - qualitySku2
+        - qualitySku2Minutes
+        - qualitySku2LabourHours
+        - qualitySku2Cost
+        - qualitySku3
+        - qualitySku3Minutes
+        - qualitySku3LabourHours
+        - qualitySku3Cost
+        - skus
+      properties:
+        division:
+         type: string
+         example: Food to go
+        site:
+          type: string
+          example: MW
+        halls:
+          type: array
+          example: Hall1
+        lines:
+          type: array
+          example: Line16
+        day:
+          type: integer
+          format: int32
+          example: 0
+        shift:
+          type: string
+          example: Day shift
+        downtime1Reason:
+          type: string
+          example: Cutter Set Up
+        downtime1Minutes:
+          format: float
+          example: 19.1
+        downtime1LabourHours:
+          type: float
+          example: 6.1
+        downtime1Cost:
+          type: float
+          example: 184.11
+        downtime2Reason:
+          type: string
+          example: Waiting for Ops
+        downtime2Minutes:
+          type: float
+          example: 19.1
+        downtime2LabourHours:
+          type: float
+          example: 6.1
+        downtime2Cost:
+          type: float
+          example: 184.11
+        downtime3Reason:
+          type: string
+          example: Other - stop for count
+        downtime3Minutes:
+          type: float
+          example: 19.1
+        downtime3LabourHours:
+          type: float
+          example: 6.1
+        downtime3Cost:
+          type: float
+          example: 184.1
+        labourUtilSku1:
+          type: string
+          example: Asda - chicken and Bacon
+        labourUtilSku1Minutes:
+          type: float
+          example: 17.1
+        labourUtilSku1LabourHours:
+          type: float
+          example: 6.1
+        labourUtilSku1Cost:
+          type: float
+          example: 60.1
+        labourUtilSku2:
+          type: string
+          example: Asda - chicken and Bacon
+        labourUtilSku2Minutes:
+          type: float
+          example: 33.1
+        labourUtilSku2LabourHours:
+          type: float
+          example: 11.1
+        labourUtilSku2Cost:
+          type: float
+          example: 110.11
+        labourUtilSku3:
+          type: string
+          example: Asda - chicken and Bacon
+        labourUtilSku3Minutes:
+          type: float
+          example: 23.1
+        labourUtilSku3LabourHours:
+          type: float
+          example: 7.1
+        labourUtilSku3Cost:
+          type: float
+          example: 70.11
+        performanceSku1:
+          type: string
+          example: Asda - chicken and Bacon
+        performanceSku1Minutes:
+          type: float
+          example: 17.1
+        performanceSku1LabourHours:
+          type: float
+          example: 6.1
+        performanceSku1Cost:
+          type: float
+          example: 60.1
+        performanceSku2:
+          type: string
+          example: Lidl - Mozzarella and Tomato
+        performanceSku2Minutes:
+          type: float
+          example: 33.1
+        performanceSku2LabourHours:
+          type: float
+          example: 6.1
+        performanceSku2Cost:
+          type: float
+          example: 110.11
+        performanceSku3:
+          type: string
+          example: coop - Cheese and Ham
+        performanceSku3Minutes:
+          type: float
+          example: 23.1
+        performanceSku3LabourHours:
+          type: float
+          example: 7.1
+        performanceSku3Cost:
+          type: float
+          example: 70.11
+        qualitySku1:
+          type: float
+          example: 70.11
+        qualitySku1Minutes:
+          type: float
+          example: 17.1
+        qualitySku1LabourHours:
+          type: float
+          example: 6.1
+        qualitySku1Cost:
+          type: float
+          example: 60.11
+        qualitySku2:
+          type: string
+          example: Lidl - Mozzarella and Tomato
+        qualitySku2Minutes:
+          type: float
+          example: 33.1
+        qualitySku2LabourHours:
+          type: float
+          example: 11.1
+        qualitySku2Cost:
+          type: float
+          example: 110.11
+        qualitySku3:
+          type: string
+          example: coop - Cheese and Ham
+        qualitySku3Minutes:
+          type: float
+          example: 23.1
+        qualitySku3LabourHours:
+          type: float
+          example: 7.1
+        qualitySku3Cost:
+          type: float
+          example: 70.11
+        skus:
+          type: array
+          items:
+      $ref: '#/components/schemas/skus'
+    skus:
+      required:
+        - runId
+        - productName
+        - startTime
+        - availability
+        - availabilityStatus
+        - availabilityMinutesLost
+        - availabilityLabourHoursLost
+        - availabilityCostLost
+        - skuDowntime1Hours
+        - skuDowntime2Hours
+        - skuDowntime3Hours
+        - skuDowntime1Minutess
+        - skuDowntime2Minutes
+        - skuDowntime3Minutes
+        - skuDowntime1Cost
+        - skuDowntime2Cost
+        - skuDowntime3Cost
+        - labourUtil
+        - labourUtilStatus
+        - labourMinutesLost
+        - labourLabourHoursLost
+        - labourCostLost
+        - prefferedManning
+        - PrefferedSpeed
+        - actualManning
+        - manningAdjustedSpeed
+        - performance
+        - performanceStatus
+        - performanceMinutesLost
+        - performanceLabourHoursLost
+        - performanceCostLost
+        - targetSpeed
+        - actualSpeed
+        - quality
+        - qualityStatus
+        - qualityMinutesLost
+        - qualityLabourHoursLost
+        - qualityCostLost
+        - targetPacks
+        - overs
+        - repacks
+        - notes
+      properties:
+        runId:
+          type: float
+          example: 60.11
+        productName:
+          type: string
+          example: Asda - Chicken and Bacon
+        startTime:
+          type: float
+          example: 60.47
+        availability:
+          type: float
+          example: 0.930
+        availabilityStatus:
+          type: float
+          example: 0
+        availabilityMinutesLost:
+          type: float
+          example: 15.1
+        availabilityLabourHoursLost:
+          type: float
+          example: 5.1
+        availabilityCostLost:
+          type: float
+          example: 50.11
+        skuDowntime1Hours:
+          type: float
+          example: 0.5
+        skuDowntime2Hours:
+          type: float
+          example: 0.1
+        skuDowntime3Hours:
+          type: float
+          example: 1.2
+        skuDowntime1Minutes:
+          type: float
+          example: 10.1
+        skuDowntime2Minutes:
+          type: float
+          example: 5.1
+        skuDowntime3Minutes:
+          type: float
+          example: 0.1
+        skuDowntime1Cost:
+          type: float
+          example: 50.11
+        skuDowntime2Cost:
+          type: float
+          example: 100.11
+        skuDowntime3Cost:
+          type: float
+          example: 5.11
+        labourUtil:
+          type: float
+          example: 0.924
+        labourUtilStatus:
+          type: integer
+          format: int32
+          example: 0
+        labourMinutesLost:
+          type: float
+          example: 15.1
+        labourLabourHoursLost:
+          type: float
+          example: 5.1
+        labourCostLost:
+          type: float
+          example: 50.11
+        prefferedManning:
+          type: integer
+          format: int32
+          example: 18
+        PrefferedSpeed:
+          type: integer
+          format: int32
+          example: 2800
+        actualManning:
+          type: integer
+          format: int32
+          example: 20
+        manningAdjustedSpeed:
+          type: integer
+          format: int32
+          example: 2900
+        performance:
+          type: float
+          example: 0.924
+        performanceStatus:
+          type: integer
+          format: int32
+          example: 0
+        performanceMinutesLost:
+          type: float
+          example: 15.1
+        performanceLabourHoursLost:
+          type: float
+          example: 5.1
+        performanceCostLost:
+          type: float
+          example: 50.11
+        targetSpeed:
+          type: integer
+          format: int32
+          example: 2800
+        actualSpeed:
+          type: integer
+          format: int32
+          example: 2900
+        quality:
+          type: float
+          example: 0.924
+        qualityStatus:
+          type: integer
+          format: int32
+          example: 0
+        qualityMinutesLost:
+          type: float
+          example: 15.1
+        qualityLabourHoursLost:
+          type: float
+          example: 5.1
+        qualityCostLost:
+          type: float
+          example: 50.11
+        targetPacks:
+          type: integer
+          format: int32
+          example: 2500
+        overs:
+          type: integer
+          format: int32
+          example: 13
+        repacks:
+          type: integer
+          format: int32
+          example: 10
+        notes:
+          type: array
+          items:
+      $ref: '#/components/schemas/notes'
+    notes:
+      required:
+        - userId
+        - timeSince
+        - text
+        - measure
+      properties:
+        userId:
+          type: string
+          example: Greencore.User
+        timeSince:
+          type: integer
+          format: int32
+          example: 1187
+        text:
+          type: string
+          example: The cutter blade was running offline causing offcuts
+        measure:
+          type: string
+          example: Availability
+    summary:
+      required:
+        -division
+        -site
+        -halls
+      properties:
+        division:
+          type: array
+          example:
+        site:
+          type: string
+          example: MW
+        halls:
+          type: array
+          example: Hall1
+      $ref: '#/components/schemas/halls'
+    note:
+      required:
+        -runId
+        -userId
+        -note
+        -measure
+      properties:
+        runId:
+          type: integer
+          format: int32
+          example: 45763
+        userId:
+          type: string
+          example: Greencore.User
+        note:
+          type: string
+          example: The cutter blade was running off line causing offcuts
+        measure:
+          type: string
+          example: Labour
+      $ref: '#/components/schemas/note'
+    halls:
+      required:
+        -hall
+        -lines
+      properties:
+        hall:
+          type: string
+          example: Hall1
+        lines:
+          type: array
+          example: Hall1
+      $ref: '#/components/schemas/lines'
+    lines:
+      required:
+        -line
+        -totalEfficiency
+        -totalEfficiencyStatus
+        -totalEfficiencyTarget
+        -totalLabourHours
+        -totalMinutes
+        -totalCost
+        -lineEfficiency
+        -lineEfficiencyStatus
+        -lineEfficiencyTarget
+        -lineLabourHours
+        -lineMinutes
+        -lineCost
+        -labourUtil
+        -labourUtilStatus
+        -labourUtilTarget
+        -labourLabourHours
+        -labourMinutes
+        -labourCost
+        -availability
+        -availabilityStatus
+        -availabilityTarget
+        -availabilityHours
+        -avaialabilityMinutes
+        -availabilityCost
+        -performance
+        -performanceStatus
+        -performanceTarget
+        -performanceHours
+        -performanceMinutes
+        -performanceCost
+        -quality
+        -qualityStatus
+        -qualityTarget
+        -qaulityHours
+        -qualityMinutes
+        -qualityCost
+      properties:
+        line:
+          type: string
+          example: Line1
+        totalEfficiency:
+          format: float
+          example: 0.924
+        totalEfficiencyStatus:
+          type: integer
+          format: int32
+          example: 0
+        totalEfficiencyTarget:
+          format: float
+          example: 0.924
+        totalLabourHours:
+          format: float
+          example: 11.1
+        totalMinutes:
+          format: float
+          example: 55.1
+        totalCost:
+          format: float
+          example: 110.00
+        lineEfficiency:
+          format: float
+          example: 0.913
+        lineEfficiencyStatus:
+          type: integer
+          format: int32
+          example: 0
+        lineEfficiencyTarget:
+          format: float
+          example: 0.913
+        lineLabourHours:
+          format: float
+          example: 9.2
+        lineMinutes:
+          format: float
+          example: 45.0
+        lineCost:
+          format: float
+          example: 90.50
+        labourUtil:
+          format: float
+          example: 0.924
+        labourUtilStatus:
+          type: integer
+          format: int32
+          example: 0
+        labourUtilTarget:
+          format: float
+          example: 0.924
+        labourLabourHours:
+          format: float
+          example: 2.1
+        labourMinutes:
+          format: float
+          example: 7.2
+        labourCost:
+          format: float
+          example: 20.10
+        availability:
+          format: float
+          example: 0.926
+        availabilityStatus:
+          type: integer
+          format: int32
+          example: 0
+        availabilityTarget:
+          format: float
+          example: 0.926
+        availabilityLabourHours:
+          format: float
+          example: 0.926
+        avaialabilityMinutes:
+          format: float
+          example: 41.2
+        availabilityCost:
+          format: float
+          example: 60.75
+        performance:
+          format: float
+          example: 1.041
+        performanceStatus:
+          type: integer
+          format: int32
+          example: 0
+        performanceTarget:
+          format: float
+          example: 1.021
+        performanceLabourHours:
+          format: float
+          example: 4.1
+        performanceMinutes:
+          format: float
+          example: 32.0
+        performanceCost:
+          format: float
+          example: 40.00
+        quality:
+          format: float
+          example: 0.942
+        qualityStatus:
+          type: integer
+          format: int32
+          example: 0
+        qualityTarget:
+          format: float
+          example: 0.942
+        qaulityLabourHours:
+          format: float
+          example: 1.2
+        qualityMinutes:
+          format: float
+          example: 11.1
+        qualityCost:
+          format: float
+          example: 10.34
+      $ref: '#/components/schemas/summary'
+    Error:
+      required:
+        - errorCode
+        - errorMessage
+      properties:
+        errorCode:
+          type: integer
+          format: int32
+        errorMessage:
+          type: string
